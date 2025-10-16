@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition UI Travel'
+define service ZSW_UI_TRAVEL {
+  expose ZSW_C_Travel   as travel;
+  expose ZSW_C_Bookings as booking;
+}
