@@ -3,6 +3,7 @@
 @Search.searchable: true
 @Metadata.allowExtensions: true
 define root view entity ZSW_C_Travel
+provider contract transactional_query
   as projection on ZSW_R_Travel
 {
   key TravelUuid,
