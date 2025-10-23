@@ -13,7 +13,22 @@ authorization master ( instance )
 
   association _Bookings { create; }
 
+  static action ShowTestMessage;
+  action CancelTravel result [1] $self;
+
+  validation ValidateDates on save { create; }
+  validation ValidateCustomer on save { create; }
+  validation ValidateAgency on save { create; }
+  determination DetermineStatus on modify { create; }
+  determination DetermineTravelId on modify { create; }
+
+
   field ( readonly, numbering : managed ) TravelUuid;
+  field ( mandatory : create ) AgencyId, BeginDate, CustomerId, Description, EndDate;
+  field ( readonly : update ) AgencyId, BeginDate, CustomerId, Description, EndDate;
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, Status, TravelId;
+
+
   mapping for zsw_travel_a corresponding
     {
       AgencyId      = agency_id;

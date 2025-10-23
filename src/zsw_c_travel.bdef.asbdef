@@ -8,6 +8,9 @@ define behavior for ZSW_C_Travel //alias <alias_name>
   use delete;
 
   use association _Bookings { create; }
+
+  use action ShowTestMessage;
+  use action CancelTravel;
 }
 
 define behavior for ZSW_C_Bookings //alias <alias_name>

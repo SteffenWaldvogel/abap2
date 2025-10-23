@@ -8,7 +8,9 @@ provider contract transactional_query
 {
   key TravelUuid,
       TravelId,
+      @Consumption.valueHelpDefinition: [{ entity: { name: '/DMO/I_Agency_StdVH', element: 'AgencyID' } }]
       AgencyId,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'Zsw_I_CustomerVH', element: 'CustomerId' } }]
       CustomerId,
       BeginDate,
       EndDate,
@@ -16,15 +18,22 @@ provider contract transactional_query
       BookingFee,
       @Semantics.amount.currencyCode: 'CurrencyCode'
       TotalPrice,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'I_CurrencyStdVH', element: 'Currency' } }]
       CurrencyCode,
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.7
       Description,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'Zsw_I_StatusVH', element: 'Status' } }]
       Status,
       CreatedBy,
       CreatedAt,
       LastChangedBy,
       LastChangedAt,
+      
+      /* Transient Data */
+      CustomerName,
+      BeginDateCriticality,
+      StatusCriticality,
 
       /* Associations */
       _Bookings : redirected to composition child ZSW_C_Bookings

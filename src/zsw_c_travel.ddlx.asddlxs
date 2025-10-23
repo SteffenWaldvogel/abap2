@@ -7,7 +7,7 @@
   description.value: 'Description'
 }
 
-
+@UI.presentationVariant: [{sortOrder: [{ by: 'BeginDate', direction: #DESC }]}]
 annotate entity ZSW_C_Travel with
 {
 
@@ -16,6 +16,13 @@ annotate entity ZSW_C_Travel with
   { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE },
   { position: 30, targetElement: '_Bookings', label: 'Bookings', type: #LINEITEM_REFERENCE }
   ]
+  
+  /* Actions */
+  @UI.lineItem: [{ position: 10, dataAction: 'ShowTestMessage', label: 'Show Test Message', type: #FOR_ACTION },
+  { position: 20, dataAction: 'CancelTravel', label: 'Cancel Travel', type: #FOR_ACTION }
+  ]
+  
+  /* Fields */
   @UI.fieldGroup: [ { position: 10, qualifier: 'AdminData' } ]
   TravelUuid;
 
@@ -53,13 +60,13 @@ annotate entity ZSW_C_Travel with
 
   //  CurrencyCode;
 
-  @UI.lineItem: [{ position: 70 }]
+  @UI.lineItem: [{ position: 70, criticality: 'BeginDateCriticality', criticalityRepresentation: #WITHOUT_ICON }]
   @UI.fieldGroup: [{ position: 80, qualifier: 'TravelDetails' }]
   Description;
 
-  @UI.lineItem: [{ position: 80 }]
+  @UI.lineItem: [{ position: 80, criticality: 'StatusCriticality', criticalityRepresentation: #WITHOUT_ICON }]
   @UI.selectionField: [{ position: 60 }]
-  @UI.fieldGroup: [{ position: 90, qualifier: 'TravelDetails' }]
+  @UI.fieldGroup: [{ position: 90, qualifier: 'TravelDetails', criticality: 'StatusCriticality', criticalityRepresentation: #WITHOUT_ICON }]
   Status;
 
   @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
